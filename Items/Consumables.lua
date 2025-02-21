@@ -31,3 +31,44 @@ SMODS.Consumable({
 		code = { "Virtualized" },
 	},
 })
+
+SMODS.Atlas({
+	key = "rebirth",
+	path = "s_rebirth.png",
+	px = 63,
+	py = 93,
+})
+
+SMODS.Consumable({
+	key = "rebirth",
+	set = "Spectral",
+	atlas = "rebirth",
+	cost = 8,
+	unlocked = true,
+	discovered = true,
+	in_pool = function(self)
+		return G.LOBBY.code and G.LOBBY.config.multiplayer_jokers and G.MULTIPLAYER_GAME.lives <= 2
+	end,
+	use = function(self, card, area, copier)
+		for i = 1, 2 do
+			local joker = G.MULTIPLAYER.UTILS.get_random_joker()
+			if joker then
+				joker:remove_from_deck()
+				joker:start_dissolve({ G.C.RED }, nil, 1.6)
+				G.jokers:remove_joker(card)
+			end
+		end
+		G.MULTIPLAYER_GAME.lives = G.MULTIPLAYER_GAME.lives + 2
+	end,
+	can_use = function(self, card)
+		return true
+	end,
+	use = function(self, card, area, copier)
+		G.MULTIPLAYER.rebirth()
+	end,
+	mp_credits = {
+		idea = { "Profpyrus" },
+		art = { "Profpyrus" },
+		code = { "Profpyrus" },
+	},
+})

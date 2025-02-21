@@ -63,6 +63,16 @@ return {
 				},
 			},
 		},
+		Spectral = {
+			c_mp_rebirth = {
+				name = "Rebirth",
+				text = {
+					"Destroy {C:attention}2{}",
+					"random jokers,",
+					"regain {C:attention}1{} {C:RED}life{}",
+				},
+			},
+		},
 		Blind = {
 			bl_pvp = {
 				name = "Your Nemesis",

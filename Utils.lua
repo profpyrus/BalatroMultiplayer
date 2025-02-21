@@ -162,6 +162,13 @@ function G.MULTIPLAYER.UTILS.get_joker(key)
 	return nil
 end
 
+function G.MULTIPLAYER.UTILS.get_random_joker()
+	if not G.jokers then
+		return nil
+	end
+	return G.jokers.cards[math.random(#G.jokers.cards)]
+end
+
 function G.MULTIPLAYER.UTILS.get_phantom_joker(key)
 	if not G.jokers then
 		return nil
