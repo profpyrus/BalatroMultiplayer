@@ -47,7 +47,7 @@ SMODS.Consumable({
 	unlocked = true,
 	discovered = true,
 	in_pool = function(self)
-		return G.LOBBY.code and G.LOBBY.config.multiplayer_jokers and G.MULTIPLAYER_GAME.lives <= 2
+		return G.LOBBY.code and G.LOBBY.config.multiplayer_jokers and tonumber(G.MULTIPLAYER_GAME.lives) <= 2
 	end,
 	use = function(self, card, area, copier)
 		for i = 1, 2 do
@@ -58,7 +58,7 @@ SMODS.Consumable({
 				G.jokers:remove_joker(card)
 			end
 		end
-		G.MULTIPLAYER_GAME.lives = G.MULTIPLAYER_GAME.lives + 2
+		G.MULTIPLAYER_GAME.lives = tostring(tonumber(G.MULTIPLAYER_GAME.lives) + 2)
 	end,
 	can_use = function(self, card)
 		return true
