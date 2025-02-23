@@ -267,6 +267,67 @@ SMODS.Joker({
 })
 
 SMODS.Atlas({
+	key = "plant_joker",
+	path = "j_plant_joker.png",
+	px = 69,
+	py = 93,
+})
+
+SMODS.Joker({
+	key = "plant_joker",
+	atlas = "plant_joker",
+	rarity = 1,
+	cost = 5,
+	unlocked = true,
+	discovered = true,
+	blueprint_compat = false,
+	eternal_compat = true,
+	perishable_compat = true,
+	loc_vars = function(self, info_queue, card)
+		add_nemesis_info(info_queue)
+		return { vars = {} }
+	end,
+	add_to_deck = function(self, card, from_debuff)
+		if card.edition and card.edition.type ~= "e_mp_phantom" then
+			return
+		end
+		G.MULTIPLAYER.send_phantom("j_mp_plant_joker")
+	end,
+	calculate = function(self, card, context)
+		if context.cardarea == G.jokers and is_pvp_boss() then
+			if context.before and context.scoring_hand then
+				for current in context.scoring_hand do
+					if current.base.id <= 13 and current.base.id >= 11 then
+						context.scoring_hand[1]:set_debuff(true)
+					end
+				end
+			end
+			if context.after and context.scoring_hand then
+				for current in context.scoring_hand do
+					if current.base.id <= 13 and current.base.id >= 11 then
+						context.scoring_hand[1]:set_debuff(false)
+					end
+				end
+			end
+		end
+	end,
+	remove_from_deck = function(self, card, from_debuff)
+		if card.edition and card.edition.type ~= "e_mp_phantom" then
+			return
+		end
+		G.MULTIPLAYER.remove_phantom("j_mp_plant_joker")
+	end,
+	in_pool = function(self)
+		return G.LOBBY.code and G.LOBBY.config.multiplayer_jokers
+	end,
+	mp_credits = {
+		idea = { "Dusa" },
+		art = { "Profpyrus" },
+		code = { "Profpyrus" },
+	},
+})
+
+SMODS.Atlas({
 	key = "speedrun",
 	path = "j_speedrun.png",
 	px = 71,

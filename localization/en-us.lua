@@ -9,6 +9,14 @@ return {
 					"{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chips)",
 				},
 			},
+			j_mp_plant_joker = {
+				name = "Plant Joker",
+				text = {
+					"During {X:purple,C:white}Nemesis{} {C:attention}Blinds{}",
+					"{C:attention}all{} played {C:attention}face{} cards used in scoring",
+					"are {C:attention}debuffed{} for both players",
+				},
+			},
 			j_mp_skip_off = {
 				name = "Skip-Off",
 				text = {
