@@ -58,13 +58,10 @@ SMODS.Consumable({
 				G.jokers:remove_joker(card)
 			end
 		end
-		G.MULTIPLAYER_GAME.lives = tostring(tonumber(G.MULTIPLAYER_GAME.lives) + 2)
+		G.MULTIPLAYER_GAME.lives = tostring(tonumber(G.MULTIPLAYER_GAME.lives) + 1)
 	end,
 	can_use = function(self, card)
 		return true
-	end,
-	use = function(self, card, area, copier)
-		G.MULTIPLAYER.rebirth()
 	end,
 	mp_credits = {
 		idea = { "Profpyrus" },
